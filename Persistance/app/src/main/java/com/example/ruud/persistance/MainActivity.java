@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     EditText editText;
     TextView textView;
+    String file = "filename";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +36,9 @@ public class MainActivity extends AppCompatActivity {
     public void writeMessage(View view)
     {
         String Message = editText.getText().toString();
-        String fileName = "hello_file";
         try
         {
-            FileOutputStream fileOutputStream = openFileOutput(fileName, MODE_PRIVATE);
+            FileOutputStream fileOutputStream = openFileOutput(file, MODE_PRIVATE);
             fileOutputStream.write(Message.getBytes());
             fileOutputStream.close();
             Toast.makeText(getApplicationContext(), "Message saved", Toast.LENGTH_LONG).show();
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     {
         try {
             String Message;
-            FileInputStream fileInputStream = openFileInput("hello_file");
+            FileInputStream fileInputStream = openFileInput(file);
             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
             StringBuffer stringBuffer = new StringBuffer();
